@@ -1,0 +1,12 @@
+@use "variables" as *;
+@use "typography" as *;
+@use "breakpoints" as *;
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $base-font, Arial, Helvetica, sans-serif;
+}

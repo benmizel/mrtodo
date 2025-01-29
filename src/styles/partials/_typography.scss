@@ -1,0 +1,17 @@
+@use "variables" as *;
+
+@font-face {
+  font-family: $base-font;
+  src: url("src/assets/fonts/TitilliumWeb-Regular.woff2") format("woff2"),
+  url("src/assets/fonts/TitilliumWeb-Regular.woff") format("woff"),
+  url("src/assets/fonts/TitilliumWeb-Regular.ttf") format("truetype");
+  font-weight: $regular;
+}
+
+@font-face {
+  font-family: $base-font, "Titillium Web", sans-serif;
+  src: url("src/assets/fonts/TitilliumWeb-SemiBold.woff2") format("woff2"),
+  url("src/assets/fonts/TitilliumWeb-SemiBold.woff") format("woff"),
+  url("src/assets/fonts/TitilliumWeb-SemiBold.ttf") format("truetype");
+  font-weight: $bold;
+}
