@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import AddTaskPage from "./pages/AddTaskPage/AddTaskPage";
 import EditTaskPage from "./pages/EditTaskPage/EditTaskPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/tasks/edit/:id" element={<EditTaskPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
     </>
   )

@@ -1,0 +1,10 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    font-size: 0.5rem;
+    color: $primary-white;
+    padding: 1rem 0;
+}

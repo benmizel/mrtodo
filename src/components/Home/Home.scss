@@ -1,0 +1,39 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/variables" as *;
+
+.homepage {
+    height: 100vh;
+    margin: $tablet-margin $mobile-margin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    &__welcome {
+        color: $primary-white;
+        font-size: 2rem;
+
+    }
+
+    &__desc {
+        color: $primary-white;
+        font-size: 1.25rem;;
+
+    }
+
+    &__prompt {
+        color: $primary-white;
+        font-size: 1rem;
+    }
+
+}
+
+.button-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: $secondary-cloud;
+    padding: 1rem;
+    width: 30%;
+    border-radius: 0.2rem;
+}
