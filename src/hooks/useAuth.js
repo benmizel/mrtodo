@@ -85,6 +85,19 @@ const useAuth = () => {
       setUser(null);
     } catch (err) {
       setError("Logout failed");
+      return err;
+    }
+  };
+
+  const deleteAccount = async () => {
+    try {
+      await axios.delete(`${API_URL}/auth/delete`, {
+        withCredentials: true,
+      });
+      setUser(null);
+    } catch (err) {
+      setError("Account deletion failed");
+      return err;
     }
   };
 
@@ -95,6 +108,7 @@ const useAuth = () => {
     login,
     signup,
     logout,
+    deleteAccount
   };
 };
 
