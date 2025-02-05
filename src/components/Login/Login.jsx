@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import './Login.scss';
 
 const Login = () => {
   const { login, user, error } = useAuth();
@@ -11,10 +12,15 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     await login(username, password);
+  };
+
+  useEffect(() => {
+    console.log("User updated:", user);
     if (user) {
       navigate("/dashboard");
     }
-  };
+  }, [user]);
+
   return (
     <main className="login">
       <h2 className="login__title">Login</h2>
@@ -56,7 +62,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </main>
   );
 };

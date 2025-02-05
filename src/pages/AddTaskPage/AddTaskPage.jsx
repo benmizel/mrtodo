@@ -1,4 +1,4 @@
-import AddTask from "../../components/AddTaskForm/AddTask";
+import AddTask from "../../components/AddTask/AddTask";
 
 const AddTaskPage = () => {
     return ( 

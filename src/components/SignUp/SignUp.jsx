@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -14,10 +13,16 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     await signup(username, password);
+    // navigate("/dashboard");
+    // console.log("After signup, user is:", user);
+  };
+
+  useEffect(() => {
+    console.log("User updated:", user);
     if (user) {
       navigate("/dashboard");
     }
-  };
+  }, [user]);
 
   return (
     <main className="signup">
@@ -61,7 +66,8 @@ const SignUp = () => {
           Sign Up
         </button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
+      {signupLoading && <p className="loading-message">Signing up...</p>}
     </main>
   );
 };

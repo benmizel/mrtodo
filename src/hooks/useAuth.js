@@ -9,19 +9,112 @@ const useAuth = () => {
   const [authLoading, setAuthLoading] = useState(false);
   const [signupLoading, setSignupLoading] = useState(false);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await axios.get(`${API_URL}/auth/refresh-token`, {
-          withCredentials: true,
-        });
-        setUser(res.data.user);
-      } catch (err) {
-        setError("Authentication failed");
-      } finally {
-        setLoading(false);
+  const checkToken = () => {
+    return (
+      localStorage.getItem("accessToken") 
+    );
+  };
+
+  const refreshToken = async () => {
+    try {
+      const res = await axios.post(
+        `${API_URL}/auth/refresh-token`,
+        {},
+        { withCredentials: true }
+      );
+
+      if (res.data.accessToken) {
+        localStorage.setItem("accessToken", res.data.accessToken);
+
       }
-    };
+      if (res.data.user) {
+        setUser(res.data.user);
+
+      }
+      
+    } catch (err) {
+      console.error("Error refreshing token:", err);
+      setError("Token refresh failed");
+      setUser(null);
+    }
+  };
+
+  // const checkAuth = async () => {
+  //   if (!checkToken()) {
+  //     setLoading(false);
+  //     setUser(null);
+  //     return;
+  //   }
+  //   try {
+  //     const res = await axios.post(
+  //       `${API_URL}/auth/refresh-token`,
+  //       {},
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     if (res.data.user) {
+  //       console.log("User authenticated:", res.data.user);
+  //       setUser(res.data.user);
+  //     }
+  //     if (res.data.accessToken) {
+  //       localStorage.setItem("accessToken", res.data.accessToken);
+  //     }
+  //     // setUser(res.data.user);
+  //   } catch (err) {
+  //     setError("Authentication failed");
+  //     setUser(null);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  const checkAuth = async () => {
+    if (!checkToken()) {
+      setLoading(false);
+      setUser(null);
+      return;
+    }
+  
+    try {
+      await refreshToken();
+    } catch (err) {
+      setError("Authentication failed");
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // const checkAuth = async () => {
+  //   // Check if accessToken exists in localStorage
+  //   const accessToken = checkToken();
+
+  //   if (!accessToken) {
+  //     // If there's no accessToken, attempt to refresh
+  //     console.log("No access token found, attempting to refresh.");
+
+  //     await refreshToken(); // Try to refresh the token
+
+  //     // After attempting to refresh, check if we still don't have an accessToken
+  //     if (!localStorage.getItem("accessToken")) {
+  //       console.log("Refresh failed, user must log in again.");
+  //       setLoading(false);
+  //       setUser(null); // If no accessToken, the user is not authenticated
+  //       return;
+  //     }
+
+  //     // If we successfully got a new access token, authenticate the user
+  //     console.log("User successfully authenticated via refresh.");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //     setLoading(false);
+  //     return;
+
+  // };
+
+  useEffect(() => {
     checkAuth();
   }, []);
 
@@ -33,9 +126,16 @@ const useAuth = () => {
         { username, password },
         { withCredentials: true }
       );
+
+      console.log("Login response:", res);
+
       if (res.data.user) {
         setUser(res.data.user);
+        localStorage.setItem("accessToken", res.data.accessToken);
       }
+      // if (res.data.user) {
+      //   setUser(res.data.user);
+      // }
     } catch (err) {
       setError("Login failed");
     } finally {
@@ -69,13 +169,15 @@ const useAuth = () => {
         username,
         password,
       });
-      if (res.data.user) {
-        setUser(res.data.user);
+
+      if (res.status === 201) {
+        await login(username, password);
       }
     } catch (err) {
+      console.error("Signup Error:", err);
       setError("Signup failed");
     } finally {
-        setSignupLoading(false);
+      setSignupLoading(false);
     }
   };
 
@@ -101,6 +203,10 @@ const useAuth = () => {
     }
   };
 
+  // useEffect(() => {
+  //   console.log("User state updated in useAuth:", user); // Log whenever user changes
+  // }, [user]);
+
   return {
     user,
     loading,
@@ -108,7 +214,8 @@ const useAuth = () => {
     login,
     signup,
     logout,
-    deleteAccount
+    deleteAccount,
+    checkAuth,
   };
 };
 

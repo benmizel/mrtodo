@@ -37,3 +37,27 @@
       }
 
 }
+
+.form-label {
+    background: $secondary-cloud;
+    color: $primary-black;
+    border: none;
+    align-content: center;;
+}
+
+.form-input {
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    border: none;
+    color: $primary-white;
+}
+
+.error-message {
+    color: $primary-white;
+    text-align: center;
+}
+
+.loading-message {
+    color: $primary-white;
+    text-align: center;
+}

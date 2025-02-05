@@ -1,17 +1,36 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 import "./Home.scss";
 
 const Home = () => {
-  let navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
-
-  const handleSignupClick = () => {
-    navigate("/signup");
-  };
+    const { user, loading, checkAuth } = useAuth();
+    let navigate = useNavigate();
+  
+    useEffect(() => {
+      const verifyAuth = async () => {
+        await checkAuth();
+        if (user) {
+          navigate("/dashboard", { replace: true });
+        }
+      };
+      if (!loading) {
+        verifyAuth();
+      }
+    }, []);
+  
+    if (loading) {
+      return <div className="homepage-loading loading">Loading...</div>;
+    }
+  
+    const handleLoginClick = () => {
+      navigate("/login");
+    };
+  
+    const handleSignupClick = () => {
+      navigate("/signup");
+    };
 
   return (
     <main className="homepage">

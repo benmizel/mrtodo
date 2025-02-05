@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import editIcon from "../../assets/icons/edit-24px.png";
-import deleteIcon from "../../assets/icons/delete_outline-24px.png";
+import editIcon from "../../assets/icons/edit-24px.svg";
+import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import "./TaskItem.scss";
 const API_URL = import.meta.env.VITE_API_URL;
 
