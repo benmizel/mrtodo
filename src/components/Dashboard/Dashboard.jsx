@@ -15,35 +15,43 @@ const Dashboard = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    const verifyAuthAndFetchTasks = async () => {
+    const verifyAuth = async () => {
       await checkAuth();
       setAuthChecked(true);
-      if (user) {
-        fetchTasks();
-      }
     };
 
     if (!authLoading) {
-      verifyAuthAndFetchTasks();
+      verifyAuth();
     }
+
   }, []);
+
 
   useEffect(() => {
     if (authChecked) {
-      if (!user) {
-        navigate("/", { replace: true });
+      if (user && user.accessToken) {
+        fetchTasks(); 
+      } else {
+        navigate("/", { replace: true }); 
       }
     }
-  }, [authChecked, user, navigate]);
+  }, [authChecked, user]);
 
   const fetchTasks = async () => {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      console.error("No access token available. Cannot fetch tasks.");
+      setError("No access token available. Please log in again.");
+      return;
+    }    
     setLoading(true);
     try {
-      const res = await axios.get(`${API_URL}/tasks`, {
+      const res = await axios.get(`${API_URL}/task`, {
         headers: {
-          Authorization: `Bearer ${user.accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
+      console.log(res.data);
       setTasks(res.data);
     } catch (err) {
       console.error(err);
@@ -53,9 +61,11 @@ const Dashboard = () => {
     }
   };
 
-  if (authLoading || loading) {
-    return <div className="dashboard-loading loading">Loading...</div>;
-  }
+  useEffect(() => {
+    console.log("Fetching tasks...");
+    fetchTasks();
+  }, [user]);
+
 
   return (
     <main className="dash">
@@ -66,7 +76,6 @@ const Dashboard = () => {
       >
         + New Task
       </button>
-      {loading && <div className="loader">Loading tasks...</div>}
       {error && (
         <div className="error-message">
           {error}{" "}

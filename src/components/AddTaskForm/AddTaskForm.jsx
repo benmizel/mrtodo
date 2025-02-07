@@ -28,7 +28,7 @@ const AddTaskForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(`${API_URL}/tasks`, task, {
+      const response = await axios.post(`${API_URL}/task/add`, task, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -110,7 +110,7 @@ const AddTaskForm = () => {
             Status:
           </label>
           <select
-            className="add-task-status-cont__status form-option"
+            className="add-task-status-cont__input form-option"
             id="status"
             name="status"
             value={task.status}

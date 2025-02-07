@@ -18,5 +18,9 @@
     flex-direction: row;
     object-fit: contain;
     justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

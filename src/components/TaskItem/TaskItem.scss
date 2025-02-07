@@ -1,2 +1,73 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/variables" as *;
+
+.task-card {
+    margin: 1rem;
+
+    &__title {
+        background: $secondary-cloud;
+        text-align: center;
+        padding-top: 0.5rem;
+    }
+
+    &__desc {
+        background: $secondary-cloud;
+        text-align: center;
+    }
+
+    &__priority {
+        background: $secondary-cloud;
+        padding: 0.5rem;
+    }
+
+    &__status {
+        background: $secondary-cloud;
+        padding: 0.5rem;
+    }
+
+    &__icon {
+        background: $secondary-cloud;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.priority-status-cont {
+    background: $secondary-cloud;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+}
+
+.low-priority {
+    background: $supporting-green;
+}
+
+.medium-priority {
+    background: $supporting-yellow;
+}
+
+.high-priority {
+    background: $supporting-red;
+}
+
+.not-started-status {
+    background: $supporting-red;
+}
+
+.pending-status {
+    background: $supporting-yellow;
+}
+
+.completed-status {
+    background: $supporting-green;
+}
+
+.task-button-cont {
+    background: $secondary-cloud;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}

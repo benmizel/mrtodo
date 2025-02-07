@@ -1,2 +1,11 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/variables" as *;
+
+
+.no-task-announcement {
+    color: $primary-black;
+}
+
+.task-list {
+    list-style-type: none;;
+}

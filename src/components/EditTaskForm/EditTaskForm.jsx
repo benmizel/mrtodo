@@ -3,38 +3,24 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditTaskForm.scss";
 
-const EditTaskForm = () => {
-  const { id } = useParams();
-  const [task, setTask] = useState({
-    title: "",
-    description: "",
-    priority: "low",
-    status: "todo",
-  });
+const API_URL = import.meta.env.VITE_API_URL;
+
+const EditTaskForm = ({ singleTask }) => {
+  const { taskId } = useParams();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadedTask, setLoadedTask] = useState(singleTask);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTask = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/tasks/${id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        });
-        setTask(response.data);
-      } catch (err) {
-        setError("Failed to fetch task details.");
-        console.error("Error fetching task:", err);
-      }
-    };
-    fetchTask();
-  }, [id]);
+    if (singleTask) {
+      setLoadedTask(singleTask);
+    }
+  }, [singleTask]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setTask((prevTask) => ({
+    setLoadedTask((prevTask) => ({
       ...prevTask,
       [name]: value,
     }));
@@ -44,7 +30,7 @@ const EditTaskForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`${API_URL}/tasks/${id}`, task, {
+      await axios.put(`${API_URL}/task/update/${taskId}`, loadedTask, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -57,6 +43,7 @@ const EditTaskForm = () => {
       setLoading(false);
     }
   };
+
   return (
     <div className="edit-task-form-cont">
       {error && <div className="error-message">{error}</div>}
@@ -77,7 +64,7 @@ const EditTaskForm = () => {
             className="edit-task-title-cont__input form-input"
             id="title"
             name="title"
-            value={task.title}
+            value={loadedTask.title}
             onChange={handleChange}
             required
           />
@@ -93,7 +80,7 @@ const EditTaskForm = () => {
             className="edit-task-desc-cont__input form-text-area"
             id="description"
             name="description"
-            value={task.description}
+            value={loadedTask.description}
             onChange={handleChange}
             required
           />
@@ -109,7 +96,7 @@ const EditTaskForm = () => {
             className="edit-task-priority-cont__input form-option"
             id="priority"
             name="priority"
-            value={task.priority}
+            value={loadedTask.priority}
             onChange={handleChange}
           >
             <option value="low">Low</option>
@@ -125,10 +112,10 @@ const EditTaskForm = () => {
             Status:
           </label>
           <select
-            className="edit-task-status-cont__status form-option"
+            className="edit-task-status-cont__input form-option"
             id="status"
             name="status"
-            value={task.status}
+            value={loadedTask.status}
             onChange={handleChange}
           >
             <option value="not started">Not Started</option>

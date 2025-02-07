@@ -34,7 +34,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/tasks/add" element={<AddTaskPage />} />
-          <Route path="/tasks/edit/:id" element={<EditTaskPage />} />
+          <Route path="/tasks/edit/:taskId" element={<EditTaskPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
