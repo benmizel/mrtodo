@@ -6,11 +6,26 @@
   display: flex;
   flex-direction: column;
 
+  @include tablet {
+    margin: 0 $tablet-margin;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @include desktop {
+    margin: 0 auto;
+    max-width: $desktop-max-width;
+  }
+
   &__logo-cont {
-    justify-content: center; // Horizontally center the image
+    justify-content: center;
     align-items: center;
     height: 8rem;
     display: flex;
+
+    @include tablet {
+      justify-content: flex-start;
+    }
   }
 
   &__logo {

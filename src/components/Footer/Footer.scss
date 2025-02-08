@@ -7,4 +7,8 @@
     font-size: 0.5rem;
     color: $primary-white;
     padding: 1rem 0;
+
+    @include tablet {
+        font-size: 0.75rem;
+    }
 }

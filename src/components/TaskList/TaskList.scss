@@ -14,4 +14,10 @@
 .no-task-announcement {
     color: $primary-white;
     text-align: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+
+    @include tablet {
+        font-size: 1.25rem;
+    }
 }

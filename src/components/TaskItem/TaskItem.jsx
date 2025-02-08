@@ -28,7 +28,7 @@ const TaskItem = ({ task, fetchTasks }) => {
       fetchTasks();
       setDeleteModalOpen(false);
     } catch (err) {
-        setDeleteError("Failed to delete the task. Please try again.");
+      setDeleteError("Failed to delete the task. Please try again.");
       console.error("Error deleting task:", err);
     }
   };
@@ -63,19 +63,35 @@ const TaskItem = ({ task, fetchTasks }) => {
 
   return (
     <li className="task-card">
-      <h3 className="task-card__title">{task.title}</h3>
-      <p className="task-card__desc">{task.description}</p>
-      <div className="priority-status-cont">
-      <p className={`task-card__priority ${priorityClass(task.priority)}`}>Priority: {task.priority.toUpperCase()}</p>
-      <p className={`task-card__status ${statusClass(task.status)}`}>Status: {task.status.toUpperCase()}</p>
-      </div>
-      <div className="task-button-cont">
-      <img src={editIcon} alt="Edit Task" className="task-card__icon task-card__edit-icon" aria-label={`Edit task: ${task.title}`}
-        onClick={handleEditClick}
-      />
-      <img src={deleteIcon} alt="Delete Task" className="task-card__icon task-card__delete-icon" aria-label={`Delete task: ${task.title}`}
-        onClick={handleDeleteClick}
-      />
+      <div className="task-card-cont">
+        <div className="title-desc-cont">
+          <h3 className="task-card__title">{task.title}</h3>
+          <p className="task-card__desc">{task.description}</p>
+        </div>
+        <div className="priority-status-cont">
+          <p className={`task-card__priority ${priorityClass(task.priority)}`}>
+            Priority: {task.priority.toUpperCase()}
+          </p>
+          <p className={`task-card__status ${statusClass(task.status)}`}>
+            Status: {task.status.toUpperCase()}
+          </p>
+        </div>
+        <div className="task-button-cont">
+          <img
+            src={editIcon}
+            alt="Edit Task"
+            className="task-card__icon task-card__edit-icon"
+            aria-label={`Edit task: ${task.title}`}
+            onClick={handleEditClick}
+          />
+          <img
+            src={deleteIcon}
+            alt="Delete Task"
+            className="task-card__icon task-card__delete-icon"
+            aria-label={`Delete task: ${task.title}`}
+            onClick={handleDeleteClick}
+          />
+        </div>
       </div>
       {deleteError && <div className="error-message">{deleteError}</div>}
       <DeleteModal
