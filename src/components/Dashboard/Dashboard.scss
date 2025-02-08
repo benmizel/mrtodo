@@ -15,3 +15,10 @@
         text-align: center;
     }
 }
+
+.task-list-token-error {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}

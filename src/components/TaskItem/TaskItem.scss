@@ -8,6 +8,7 @@
         background: $secondary-cloud;
         text-align: center;
         padding-top: 0.5rem;
+        border-radius: 0.2rem 0.2rem 0 0;
     }
 
     &__desc {
@@ -27,9 +28,12 @@
 
     &__icon {
         background: $secondary-cloud;
+        border: 1px solid $secondary-cloud;
 
         &:hover {
             cursor: pointer;
+            border-radius: 0.2rem;
+            border: 1px solid $primary-black;
         }
     }
 }
@@ -43,26 +47,32 @@
 
 .low-priority {
     background: $supporting-green;
+    border-radius: 0.2rem;
 }
 
 .medium-priority {
     background: $supporting-yellow;
+    border-radius: 0.2rem;
 }
 
 .high-priority {
     background: $supporting-red;
+    border-radius: 0.2rem;
 }
 
 .not-started-status {
     background: $supporting-red;
+    border-radius: 0.2rem;
 }
 
-.pending-status {
+.in-progress-status {
     background: $supporting-yellow;
+    border-radius: 0.2rem;
 }
 
 .completed-status {
     background: $supporting-green;
+    border-radius: 0.2rem;
 }
 
 .task-button-cont {
@@ -70,4 +80,5 @@
     padding: 0.5rem;
     display: flex;
     justify-content: space-between;
+    border-radius: 0 0 0.2rem 0.2rem;
 }

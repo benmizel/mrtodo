@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAuth from "./hooks/useAuth";
 import HomePage from "./pages/HomePage/HomePage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
@@ -16,13 +16,10 @@ function App() {
   const { user, loading, logout, deleteAccount } = useAuth();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  if (loading) return <div className="loader">Loading...</div>;
-
   return (
     <>
       <BrowserRouter>
         <Header
-          user={user}
           logout={logout}
           setDeleteModalOpen={setDeleteModalOpen}
           isDeleteModalOpen={isDeleteModalOpen}

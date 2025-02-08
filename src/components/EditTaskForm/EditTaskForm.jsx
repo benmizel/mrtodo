@@ -9,7 +9,12 @@ const EditTaskForm = ({ singleTask }) => {
   const { taskId } = useParams();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [loadedTask, setLoadedTask] = useState(singleTask);
+  const [loadedTask, setLoadedTask] = useState({
+    title: '',
+    description: '',
+    status: 'not started',
+    priority: 'low'
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -119,7 +124,7 @@ const EditTaskForm = ({ singleTask }) => {
             onChange={handleChange}
           >
             <option value="not started">Not Started</option>
-            <option value="in-progress">Pending</option>
+            <option value="in progress">Pending</option>
             <option value="completed">Completed</option>
           </select>
         </div>

@@ -3,6 +3,8 @@
 
 .header {
   margin: 0 $mobile-margin;
+  display: flex;
+  flex-direction: column;
 
   &__logo-cont {
     justify-content: center; // Horizontally center the image

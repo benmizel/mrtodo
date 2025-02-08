@@ -10,7 +10,7 @@ const AddTaskForm = () => {
     title: "",
     description: "",
     priority: "medium",
-    status: "pending",
+    status: "not started",
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -117,7 +117,7 @@ const AddTaskForm = () => {
             onChange={handleChange}
           >
             <option value="not started">Not Started</option>
-            <option value="pending">Pending</option>
+            <option value="in progress">In Progress</option>
             <option value="completed">Completed</option>
           </select>
         </div>

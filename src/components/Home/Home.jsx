@@ -7,6 +7,7 @@ import "./Home.scss";
 const Home = () => {
     const { user, loading, checkAuth } = useAuth();
     let navigate = useNavigate();
+    console.log(loading);
   
     useEffect(() => {
       const verifyAuth = async () => {
@@ -18,7 +19,7 @@ const Home = () => {
       if (!loading) {
         verifyAuth();
       }
-    }, []);
+    }, [checkAuth]);
   
     if (loading) {
       return <div className="homepage-loading loading">Loading...</div>;

@@ -13,12 +13,9 @@ const AddTask = () => {
     const verifyAuth = async () => {
       await checkAuth();
       setAuthChecked(true);
-      if (user) {
-        navigate("/tasks/add", { replace: true });
-      }
     };
     verifyAuth();
-  }, []);
+  }, [checkAuth]);
 
   useEffect(() => {
     if (authChecked) {
@@ -28,7 +25,6 @@ const AddTask = () => {
     }
   }, [authChecked, user, navigate]);
 
-  // if (loading) return <div className="add-task-loading loading">Loading...</div>;
 
   return (
     <main className="add-task-page">

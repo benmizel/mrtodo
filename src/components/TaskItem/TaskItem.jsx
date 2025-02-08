@@ -54,8 +54,8 @@ const TaskItem = ({ task, fetchTasks }) => {
   const statusClass = (status) => {
     if (status === "not started") {
       return "not-started-status";
-    } else if (status === "pending") {
-      return "pending-status";
+    } else if (status === "in progress") {
+      return "in-progress-status";
     } else {
       return "completed-status";
     }

@@ -2,39 +2,63 @@
 @use "../../styles/partials/variables" as *;
 
 .delete-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .delete-modal {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-}
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
 
-.delete-modal__actions button {
+  &__content {
+    padding: 1rem;
+    border-radius: 0.2rem;;
+  }
+
+  &__actions {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  &__cancel-button {
     padding: 10px 20px;
     font-size: 16px;
     margin: 5px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
-}
+    background: $secondary-cloud;
+  }
 
-.delete-modal__actions button:first-child {
-    background-color: #ccc;
-}
-
-.delete-modal__actions button:last-child {
+  &__delete-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
     background-color: #e74c3c;
-    color: white;
+    color: $primary-white;
+  }
+
+  &__title {
+    color: $primary-white;
+  }
+
+  &__message {
+    color: $primary-white;
+  }
 }

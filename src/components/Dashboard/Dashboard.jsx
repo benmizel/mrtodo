@@ -66,6 +66,10 @@ const Dashboard = () => {
     fetchTasks();
   }, [user]);
 
+  const handleGoToLogin = () => {
+    navigate("/", { replace: true });
+  };
+
 
   return (
     <main className="dash">
@@ -77,10 +81,10 @@ const Dashboard = () => {
         + New Task
       </button>
       {error && (
-        <div className="error-message">
+        <div className="error-message task-list-token-error">
           {error}{" "}
-          <button className="retry-button button" onClick={fetchTasks}>
-            Retry
+          <button className="retry-button button" onClick={handleGoToLogin}>
+            Go To Login Page
           </button>
         </div>
       )}

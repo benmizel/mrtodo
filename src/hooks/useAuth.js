@@ -39,35 +39,6 @@ const useAuth = () => {
     }
   };
 
-  // const checkAuth = async () => {
-  //   if (!checkToken()) {
-  //     setLoading(false);
-  //     setUser(null);
-  //     return;
-  //   }
-  //   try {
-  //     const res = await axios.post(
-  //       `${API_URL}/auth/refresh-token`,
-  //       {},
-  //       {
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     if (res.data.user) {
-  //       console.log("User authenticated:", res.data.user);
-  //       setUser(res.data.user);
-  //     }
-  //     if (res.data.accessToken) {
-  //       localStorage.setItem("accessToken", res.data.accessToken);
-  //     }
-  //     // setUser(res.data.user);
-  //   } catch (err) {
-  //     setError("Authentication failed");
-  //     setUser(null);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const checkAuth = async () => {
     if (!checkToken()) {
       setLoading(false);
@@ -84,35 +55,6 @@ const useAuth = () => {
       setLoading(false);
     }
   };
-
-  // const checkAuth = async () => {
-  //   // Check if accessToken exists in localStorage
-  //   const accessToken = checkToken();
-
-  //   if (!accessToken) {
-  //     // If there's no accessToken, attempt to refresh
-  //     console.log("No access token found, attempting to refresh.");
-
-  //     await refreshToken(); // Try to refresh the token
-
-  //     // After attempting to refresh, check if we still don't have an accessToken
-  //     if (!localStorage.getItem("accessToken")) {
-  //       console.log("Refresh failed, user must log in again.");
-  //       setLoading(false);
-  //       setUser(null); // If no accessToken, the user is not authenticated
-  //       return;
-  //     }
-
-  //     // If we successfully got a new access token, authenticate the user
-  //     console.log("User successfully authenticated via refresh.");
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //     setLoading(false);
-  //     return;
-
-  // };
 
   useEffect(() => {
     checkAuth();
@@ -133,9 +75,6 @@ const useAuth = () => {
         setUser(res.data.user);
         localStorage.setItem("accessToken", res.data.accessToken);
       }
-      // if (res.data.user) {
-      //   setUser(res.data.user);
-      // }
     } catch (err) {
       setError("Login failed");
     } finally {
@@ -182,30 +121,25 @@ const useAuth = () => {
   };
 
   const logout = async () => {
-    try {
-      await axios.post(`${API_URL}/auth/logout`, {}, { withCredentials: true });
-      setUser(null);
-    } catch (err) {
-      setError("Logout failed");
-      return err;
-    }
+    localStorage.removeItem("accessToken");
+    setUser(null); 
   };
 
   const deleteAccount = async () => {
     try {
-      await axios.delete(`${API_URL}/auth/delete`, {
+      await axios.delete(`${API_URL}/user`, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
       });
+      localStorage.removeItem("accessToken");
       setUser(null);
     } catch (err) {
       setError("Account deletion failed");
       return err;
     }
   };
-
-  // useEffect(() => {
-  //   console.log("User state updated in useAuth:", user); // Log whenever user changes
-  // }, [user]);
 
   return {
     user,

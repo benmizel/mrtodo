@@ -1,0 +1,64 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/variables" as *;
+
+.user-menu {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+  flex-direction: column;
+
+  &__button {
+    background: $secondary-cloud;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &.active {
+      text-decoration: underline;
+      border-radius: 0.2rem 0.2rem 0 0;
+    }
+  }
+
+  &__dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__logout {
+    padding: 1rem;
+    background: $primary-blue;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  &__delete {
+    padding: 1rem;
+    background-color: #e74c3c;
+    color: $primary-white;
+    border: none;
+    border-radius: 0 0 0.2rem 0.2rem;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+.dropdown-icon {
+  background: none;
+}
