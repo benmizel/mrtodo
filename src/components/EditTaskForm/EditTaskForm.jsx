@@ -10,10 +10,10 @@ const EditTaskForm = ({ singleTask }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadedTask, setLoadedTask] = useState({
-    title: '',
-    description: '',
-    status: 'not started',
-    priority: 'low'
+    title: "",
+    description: "",
+    status: "not started",
+    priority: "low",
   });
   const navigate = useNavigate();
 
@@ -129,21 +129,20 @@ const EditTaskForm = ({ singleTask }) => {
           </select>
         </div>
         <div className="edit-task-button-cont">
-
-        <button
-          className="edit-task-button button"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? "Updating Task..." : "Update Task"}
-        </button>
-        <button
-          className="edit-task-cancel-button button"
-          type="button"
-          onClick={() => navigate("/dashboard")}
-        >
-          Cancel
-        </button>
+          <button
+            className="edit-task-button button"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Updating Task..." : "Update Task"}
+          </button>
+          <button
+            className="edit-task-cancel-button button"
+            type="button"
+            onClick={() => navigate("/dashboard")}
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

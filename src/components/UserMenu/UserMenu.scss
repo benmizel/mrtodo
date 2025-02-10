@@ -10,7 +10,6 @@
   @include tablet {
     padding: 0;
     position: relative;
-
   }
 
   &__button {
@@ -26,9 +25,8 @@
     font-size: 1rem;
 
     @include tablet {
-        font-size: 1.25rem;
-        margin-bottom: 0;
-        
+      font-size: 1.25rem;
+      margin-bottom: 0;
     }
 
     &:hover {
@@ -49,11 +47,11 @@
     justify-content: center;
 
     @include tablet {
-        position: absolute;
-        top: 70%;
-        left: 0;
-        width: 100%;
-        z-index: 10;;
+      position: absolute;
+      top: 70%;
+      left: 0;
+      width: 100%;
+      z-index: 10;
     }
   }
 
@@ -64,7 +62,7 @@
     font-size: 1rem;
 
     @include tablet {
-        font-size: 1.25rem;
+      font-size: 1.25rem;
     }
 
     &:hover {
@@ -85,7 +83,7 @@
     font-size: 1rem;
 
     @include tablet {
-        font-size: 1.25rem;
+      font-size: 1.25rem;
     }
 
     &:hover {

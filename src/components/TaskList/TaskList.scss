@@ -1,23 +1,22 @@
 @use "../../styles/partials/breakpoints" as *;
 @use "../../styles/partials/variables" as *;
 
-
 .no-task-announcement {
-    color: $primary-black;
+  color: $primary-black;
 }
 
 .task-list {
-    list-style-type: none;
-    border-radius: 0.2rem;
+  list-style-type: none;
+  border-radius: 0.2rem;
 }
 
 .no-task-announcement {
-    color: $primary-white;
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 1rem;
+  color: $primary-white;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1rem;
 
-    @include tablet {
-        font-size: 1.25rem;
-    }
+  @include tablet {
+    font-size: 1.25rem;
+  }
 }

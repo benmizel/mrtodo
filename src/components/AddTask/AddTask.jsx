@@ -25,7 +25,6 @@ const AddTask = () => {
     }
   }, [authChecked, user, navigate]);
 
-
   return (
     <main className="add-task-page">
       <h1 className="add-task-page__heading">Create a New Task</h1>

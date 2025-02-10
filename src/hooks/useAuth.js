@@ -10,9 +10,7 @@ const useAuth = () => {
   const [signupLoading, setSignupLoading] = useState(false);
 
   const checkToken = () => {
-    return (
-      localStorage.getItem("accessToken") 
-    );
+    return localStorage.getItem("accessToken");
   };
 
   const refreshToken = async () => {
@@ -25,13 +23,10 @@ const useAuth = () => {
 
       if (res.data.accessToken) {
         localStorage.setItem("accessToken", res.data.accessToken);
-
       }
       if (res.data.user) {
         setUser(res.data.user);
-
       }
-      
     } catch (err) {
       console.error("Error refreshing token:", err);
       setError("Token refresh failed");
@@ -45,7 +40,7 @@ const useAuth = () => {
       setUser(null);
       return;
     }
-  
+
     try {
       await refreshToken();
     } catch (err) {
@@ -68,8 +63,6 @@ const useAuth = () => {
         { username, password },
         { withCredentials: true }
       );
-
-      console.log("Login response:", res);
 
       if (res.data.user) {
         setUser(res.data.user);
@@ -122,7 +115,7 @@ const useAuth = () => {
 
   const logout = async () => {
     localStorage.removeItem("accessToken");
-    setUser(null); 
+    setUser(null);
   };
 
   const deleteAccount = async () => {

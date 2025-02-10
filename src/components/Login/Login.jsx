@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import './Login.scss';
+import "./Login.scss";
 
 const Login = () => {
   const { login, user, error } = useAuth();
@@ -15,7 +15,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log("User updated:", user);
     if (user) {
       navigate("/dashboard");
     }
@@ -49,7 +48,8 @@ const Login = () => {
           >
             Password
           </label>
-          <input className="login-pass-cont__input form-input"
+          <input
+            className="login-pass-cont__input form-input"
             id="login-pass"
             type="password"
             placeholder="Password"

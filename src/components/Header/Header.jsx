@@ -1,25 +1,28 @@
-import logo from '../../assets/logo/mrtodo_logo.png';
-import { useState, useEffect } from 'react';
+import logo from "../../assets/logo/mrtodo_logo.png";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import UserMenu from '../UserMenu/UserMenu';
-import useAuth from '../../hooks/useAuth';
+import UserMenu from "../UserMenu/UserMenu";
+import useAuth from "../../hooks/useAuth";
 import "./Header.scss";
 
-const Header = ({ logout, setDeleteModalOpen, deleteAccount, isDeleteModalOpen }) => {
+const Header = ({
+  logout,
+  setDeleteModalOpen,
+  deleteAccount,
+  isDeleteModalOpen,
+}) => {
   const { user } = useAuth();
   let navigate = useNavigate();
   let location = useLocation();
   const [isUserReady, setIsUserReady] = useState(false);
 
-
-    useEffect(() => {
-      if (user !== null) {
-        setIsUserReady(true); // User is logged in or updated
-      } else {
-        setIsUserReady(false); // User is not logged in
-      }
-    }, []);
-  
+  useEffect(() => {
+    if (user !== null) {
+      setIsUserReady(true);
+    } else {
+      setIsUserReady(false);
+    }
+  }, []);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -36,12 +39,12 @@ const Header = ({ logout, setDeleteModalOpen, deleteAccount, isDeleteModalOpen }
             onClick={handleLogoClick}
           />
         </div>
-        <UserMenu 
-          user={user} 
-          logout={logout} 
+        <UserMenu
+          user={user}
+          logout={logout}
           setDeleteModalOpen={setDeleteModalOpen}
           isDeleteModalOpen={isDeleteModalOpen}
-          deleteAccount={deleteAccount} 
+          deleteAccount={deleteAccount}
         />
       </header>
     );
@@ -58,11 +61,7 @@ const Header = ({ logout, setDeleteModalOpen, deleteAccount, isDeleteModalOpen }
         </div>
       </header>
     );
-
   }
-  
-
-  
 };
 
 export default Header;

@@ -3,37 +3,40 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import EditTaskForm from "../EditTaskForm/EditTaskForm";
-import './EditTask.scss';
+import "./EditTask.scss";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const EditTask = () => {
   const { user, loading: authLoading, checkAuth } = useAuth();
   const { taskId } = useParams();
   const [authChecked, setAuthChecked] = useState(false);
-  const [singleTask, setSingleTask] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
+  const [singleTask, setSingleTask] = useState({
+    title: "",
+    description: "",
+    status: "not started",
+    priority: "low",
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   let navigate = useNavigate();
 
   useEffect(() => {
     const verifyAuth = async () => {
-      await checkAuth(); 
+      await checkAuth();
       setAuthChecked(true);
     };
 
     if (!authLoading) {
-      verifyAuth(); 
+      verifyAuth();
     }
-
   }, []);
-
 
   useEffect(() => {
     if (authChecked) {
       if (user && user.accessToken) {
-        fetchTaskById(); 
+        fetchTaskById();
       } else {
-        navigate("/", { replace: true }); 
+        navigate("/", { replace: true });
       }
     }
   }, [authChecked, user]);
@@ -47,7 +50,6 @@ const [error, setError] = useState(null);
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log("Fetched Task Data:", response.data);
       setSingleTask(response.data[0]);
     } catch (err) {
       setError("Failed to fetch task details.");
@@ -58,15 +60,8 @@ const [error, setError] = useState(null);
   };
 
   useEffect(() => {
-    console.log("Fetching tasks...");
     fetchTaskById();
   }, [user]);
-
-  useEffect(() => {
-    if (singleTask && Object.keys(singleTask).length > 0) {
-      console.log("Single Task Updated:", singleTask);
-    }
-  }, [singleTask]);
 
   return (
     <main className="edit-task-page">

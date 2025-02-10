@@ -1,0 +1,20 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/variables" as *;
+
+.not-found {
+  margin: 0 $mobile-margin;
+
+  @include tablet {
+    margin: 0 $tablet-margin;
+  }
+
+  @include desktop {
+    margin: 0 auto;
+    max-width: $desktop-max-width;
+  }
+
+  &__title {
+    text-align: center;
+    color: $primary-white;
+  }
+}

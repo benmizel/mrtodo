@@ -13,12 +13,9 @@ const SignUp = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     await signup(username, password);
-    // navigate("/dashboard");
-    // console.log("After signup, user is:", user);
   };
 
   useEffect(() => {
-    console.log("User updated:", user);
     if (user) {
       navigate("/dashboard");
     }

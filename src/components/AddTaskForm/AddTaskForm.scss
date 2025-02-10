@@ -2,94 +2,85 @@
 @use "../../styles/partials/variables" as *;
 
 .add-task-form-cont {
-    background: $secondary-cloud;
-    border-radius: 0.2rem;
-
+  background: $secondary-cloud;
+  border-radius: 0.2rem;
 }
 
 .add-task-form {
-    background: $secondary-cloud;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  background: $secondary-cloud;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .add-task-title-cont {
-    background: $secondary-cloud;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  background: $secondary-cloud;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 
-    &__title {
-        width: 25%;
-        text-align: end;
-    }
+  &__title {
+    width: 25%;
+    text-align: end;
+  }
 
-    &__input {
-        width: 75%;
-    }
+  &__input {
+    width: 75%;
+  }
 }
 
 .add-task-desc-cont {
-    background: $secondary-cloud;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  background: $secondary-cloud;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 
-    &__desc {
-        width: 25%;
-        text-align: end;
-        height: 10rem;
+  &__desc {
+    width: 25%;
+    text-align: end;
+    height: 10rem;
+  }
 
-    }
-
-    &__input {
-        width: 75%;
-    }
-
+  &__input {
+    width: 75%;
+  }
 }
 
 .add-task-priority-cont {
-    background: $secondary-cloud;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  background: $secondary-cloud;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 
-    &__priority {
-        width: 25%;
-        text-align: end;
+  &__priority {
+    width: 25%;
+    text-align: end;
+  }
 
-    }
-
-    &__input {
-        width: 75%;
-
-    }
-
+  &__input {
+    width: 75%;
+  }
 }
 
 .add-task-status-cont {
-    background: $secondary-cloud;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  background: $secondary-cloud;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 
-    &__status {
-        width: 25%;
-        text-align: end;
+  &__status {
+    width: 25%;
+    text-align: end;
+  }
 
-    }
-
-    &__input {
-        width: 75%;
-    }
-
+  &__input {
+    width: 75%;
+  }
 }
 
 .add-task-button-cont {
-    background: $secondary-cloud;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-
+  background: $secondary-cloud;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }

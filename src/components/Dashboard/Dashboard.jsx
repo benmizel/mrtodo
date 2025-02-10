@@ -23,16 +23,14 @@ const Dashboard = () => {
     if (!authLoading) {
       verifyAuth();
     }
-
   }, []);
-
 
   useEffect(() => {
     if (authChecked) {
       if (user && user.accessToken) {
-        fetchTasks(); 
+        fetchTasks();
       } else {
-        navigate("/", { replace: true }); 
+        navigate("/", { replace: true });
       }
     }
   }, [authChecked, user]);
@@ -43,7 +41,7 @@ const Dashboard = () => {
       console.error("No access token available. Cannot fetch tasks.");
       setError("No access token available. Please log in again.");
       return;
-    }    
+    }
     setLoading(true);
     try {
       const res = await axios.get(`${API_URL}/task`, {
@@ -51,7 +49,6 @@ const Dashboard = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      console.log(res.data);
       setTasks(res.data);
     } catch (err) {
       console.error(err);
@@ -62,14 +59,12 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    console.log("Fetching tasks...");
     fetchTasks();
   }, [user]);
 
   const handleGoToLogin = () => {
     navigate("/", { replace: true });
   };
-
 
   return (
     <main className="dash">

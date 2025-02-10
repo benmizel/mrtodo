@@ -23,10 +23,18 @@ const DeleteModal = ({
         {title && <h3 className="delete-modal__title">{title}</h3>}
         <p className="delete-modal__message">{message}</p>
         <div className="delete-modal__actions">
-          <button className="delete-modal__cancel-button" onClick={onRequestClose} disabled={loading}>
+          <button
+            className="delete-modal__cancel-button"
+            onClick={onRequestClose}
+            disabled={loading}
+          >
             Cancel
           </button>
-          <button className="delete-modal__delete-button" onClick={onConfirm} disabled={loading}>
+          <button
+            className="delete-modal__delete-button"
+            onClick={onConfirm}
+            disabled={loading}
+          >
             Yes, Delete
           </button>
         </div>
